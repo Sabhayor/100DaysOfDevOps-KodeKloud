@@ -1,4 +1,4 @@
-# Day 08 — Install Ansible (v4.10.0) Using pip3
+# Day 08 - Install Ansible (v4.10.0) Using pip3
 
 ## Task Overview
 During a Nautilus DevOps team planning session, Ansible was selected as the preferred automation and configuration management tool due to its simplicity and minimal prerequisites.  
