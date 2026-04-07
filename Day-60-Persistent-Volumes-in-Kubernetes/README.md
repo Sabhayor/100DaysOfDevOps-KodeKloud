@@ -146,6 +146,27 @@ kubectl get pods
 kubectl get svc
 ```
 
+### Check container logs
+```
+kubectl logs pod-nautilus -c container-nautilus
+```
+
+### Exec into container
+```
+kubectl exec -it pod-nautilus -c container-nautilus -- /bin/sh
+```
+
+### Create an Index file
+```
+echo "<h1>Hello from PV</h1>" > /usr/share/nginx/html/index.html
+```
+
+### Verify PVC mount
+```
+kubectl exec -it pod-nautilus -- ls -l /usr/share/nginx/html
+```
+
+
 Test access:
 
 ```bash
