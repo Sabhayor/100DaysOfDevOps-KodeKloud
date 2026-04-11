@@ -1,4 +1,4 @@
-# Day 63 - Deploy Iron Gallery App (Nautilus Variant)
+# Day 63 - Deploy Iron Gallery App
 
 ## Task/Requirement
 
