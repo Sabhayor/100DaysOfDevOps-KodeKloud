@@ -6,7 +6,7 @@ There is a requirement to create a Jenkins job to automate the database backup. 
 
 Click on the Jenkins button on the top bar to access the Jenkins UI. Login using username admin and password Adm!n321.
 
-Create a Jenkins job named database-backup.
+Create a Jenkins job named `database-backup`.
 
 Configure it to take a database dump of the `kodekloud_db01` database present on the App server (stapp01) in Stratos Datacenter, the database user is `kodekloud_roy` and password is `asdfgdsd`.
 
@@ -16,13 +16,7 @@ Copy the `db_$(date +%F).sql` dump to the Storage server (ststor01) under locati
 
 Further, schedule this job to run periodically at `*/10 * * * *` (please use this exact schedule format).
 
-
-Note:
-
-You might need to install some plugins and restart Jenkins service. So, we recommend clicking on Restart Jenkins when installation is complete and no jobs are running on plugin installation/update page i.e update centre. Also, Jenkins UI sometimes gets stuck when Jenkins service restarts in the back end. In this case please make sure to refresh the UI page.
-
-Please make sure to define you cron expression like this */10 * * * * (this is just an example to run job every 10 minutes).
-
+---
 
 ## Task Summary
 
@@ -51,15 +45,15 @@ This task focuses on automating database backups using Jenkins by dumping a MySQ
 
 ---
 
-## 3. Configure SSH Access (Required for Automation)
+### 3. Configure SSH Access (Required for Automation)
 
-### Step 3.1: Switch to Jenkins User
+#### Step 3.1: Switch to Jenkins User
 
 ```bash
 sudo su - jenkins
 ```
 
-### Step 3.2: Generate SSH Key
+#### Step 3.2: Generate SSH Key
 
 ```bash
 ssh-keygen -t rsa -b 2048
@@ -70,7 +64,7 @@ ssh-keygen -t rsa -b 2048
 
 ---
 
-### Step 3.3: Copy Key to Target Servers
+#### Step 3.3: Copy Key to Target Servers
 
 ```bash
 ssh-copy-id tony@stapp01
@@ -79,7 +73,7 @@ ssh-copy-id natasha@ststor01
 
 ---
 
-### Step 3.4: Verify Access
+#### Step 3.4: Verify Access
 
 ```bash
 ssh tony@stapp01
@@ -90,7 +84,7 @@ ssh natasha@ststor01
 
 ---
 
-## 4. Configure Build Step
+### 4. Configure Build Step
 
 Add **Execute Shell**:
 
@@ -111,7 +105,7 @@ scp /tmp/${DUMP_FILE} natasha@ststor01:/home/natasha/db_backups/
 
 ---
 
-## 5. Schedule the Job
+### 5. Schedule the Job
 
 * Go to **Build Triggers**
 * Enable **Build periodically**
