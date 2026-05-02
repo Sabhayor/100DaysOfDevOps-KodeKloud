@@ -1,0 +1,14 @@
+pipeline {
+    agent { label 'stapp01' }
+
+    stages {
+        stage('Deploy') {
+            steps {
+                sh '''
+                cd /var/www/html
+                sudo git pull origin master
+                '''
+            }
+        }
+    }
+}
