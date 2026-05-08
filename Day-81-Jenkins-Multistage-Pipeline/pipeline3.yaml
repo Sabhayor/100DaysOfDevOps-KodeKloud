@@ -1,0 +1,24 @@
+pipeline {
+    agent { label 'stapp01' }
+
+    stages {
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                    cd /var/www/html
+                    git fetch origin
+                    git reset --hard origin/master
+                '''
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh '''
+                    curl -f http://stlb01:8091
+                '''
+            }
+        }
+    }
+}
