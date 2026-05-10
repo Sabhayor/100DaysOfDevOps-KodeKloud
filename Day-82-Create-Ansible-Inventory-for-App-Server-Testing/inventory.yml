@@ -1,0 +1,1 @@
+stapp01 ansible_host=10.244.29.238 ansible_user=tony ansible_ssh_pass=Ir0nM@n ansible_connection=ssh
