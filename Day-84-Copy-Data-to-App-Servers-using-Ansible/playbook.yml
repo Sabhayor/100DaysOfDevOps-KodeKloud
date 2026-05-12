@@ -1,0 +1,13 @@
+---
+- name: Copy data to application servers
+  hosts: app_servers
+  become: yes
+
+  tasks:
+    - name: Copy index.html to app servers
+      copy:
+        src: /usr/src/data/index.html
+        dest: /opt/data/index.html
+        owner: root
+        group: root
+        mode: '0644'
