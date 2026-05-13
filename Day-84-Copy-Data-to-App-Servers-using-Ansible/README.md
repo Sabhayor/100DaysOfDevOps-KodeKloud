@@ -156,6 +156,8 @@ Execute:
 ansible-playbook -i inventory playbook.yml
 ```
 
+---
+
 ## Error Encountered
 
 When the playbook was first executed, Ansible failed with:

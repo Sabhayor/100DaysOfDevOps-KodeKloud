@@ -1,0 +1,33 @@
+---
+- name: Create file on app servers
+  hosts: app_servers
+  become: yes
+
+  tasks:
+
+    - name: Create blank file on App Server 1
+      file:
+        path: /usr/src/webapp.txt
+        state: touch
+        mode: '0744'
+        owner: tony
+        group: tony
+      when: inventory_hostname == "stapp01"
+
+    - name: Create blank file on App Server 2
+      file:
+        path: /usr/src/webapp.txt
+        state: touch
+        mode: '0744'
+        owner: steve
+        group: steve
+      when: inventory_hostname == "stapp02"
+
+    - name: Create blank file on App Server 3
+      file:
+        path: /usr/src/webapp.txt
+        state: touch
+        mode: '0744'
+        owner: banner
+        group: banner
+      when: inventory_hostname == "stapp03"
