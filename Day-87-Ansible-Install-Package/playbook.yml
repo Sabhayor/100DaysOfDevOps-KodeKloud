@@ -1,0 +1,10 @@
+---
+- name: Install logrotate package on app servers
+  hosts: app_servers
+  become: yes
+
+  tasks:
+    - name: Install logrotate using yum
+      yum:
+        name: logrotate
+        state: present
