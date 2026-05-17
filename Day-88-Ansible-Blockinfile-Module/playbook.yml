@@ -1,0 +1,35 @@
+---
+- name: Install and configure httpd on app servers
+  hosts: app_servers
+  become: yes
+
+  tasks:
+
+    - name: Install httpd package
+      yum:
+        name: httpd
+        state: present
+
+    - name: Ensure httpd service is running and enabled
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Add sample content to index.html using blockinfile
+      blockinfile:
+        path: /var/www/html/index.html
+        create: yes
+        block: |
+          Welcome to XfusionCorp!
+
+          This is Nautilus sample file, created using Ansible!
+
+          Please do not modify this file manually!
+
+    - name: Set ownership and permissions on index.html
+      file:
+        path: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: '0755'
