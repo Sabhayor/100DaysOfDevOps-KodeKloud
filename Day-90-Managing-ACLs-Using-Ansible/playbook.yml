@@ -1,0 +1,65 @@
+---
+- name: Configure ACLs on App Server 1
+  hosts: stapp01
+  become: yes
+
+  tasks:
+    - name: Create blog.txt file
+      file:
+        path: /opt/itadmin/blog.txt
+        state: touch
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Set ACL for group tony
+      acl:
+        path: /opt/itadmin/blog.txt
+        entity: tony
+        etype: group
+        permissions: r
+        state: present
+
+
+- name: Configure ACLs on App Server 2
+  hosts: stapp02
+  become: yes
+
+  tasks:
+    - name: Create story.txt file
+      file:
+        path: /opt/itadmin/story.txt
+        state: touch
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Set ACL for user steve
+      acl:
+        path: /opt/itadmin/story.txt
+        entity: steve
+        etype: user
+        permissions: rw
+        state: present
+
+
+- name: Configure ACLs on App Server 3
+  hosts: stapp03
+  become: yes
+
+  tasks:
+    - name: Create media.txt file
+      file:
+        path: /opt/itadmin/media.txt
+        state: touch
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Set ACL for group banner
+      acl:
+        path: /opt/itadmin/media.txt
+        entity: banner
+        etype: group
+        permissions: rw
+        state: present
