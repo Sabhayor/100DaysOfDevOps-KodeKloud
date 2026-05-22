@@ -1,0 +1,3 @@
+stapp01 ansible_user=tony ansible_host=10.244.234.213
+stapp02 ansible_user=steve ansible_host=10.244.164.41
+stapp03 ansible_user=banner ansible_host=10.244.240.158
