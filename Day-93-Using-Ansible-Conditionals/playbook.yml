@@ -1,0 +1,33 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+
+    - name: Copy blog.txt to App Server 1
+      copy:
+        src: /usr/src/data/blog.txt
+        dest: /opt/data/blog.txt
+        owner: tony
+        group: tony
+        mode: '0655'
+      when: ansible_nodename == "stapp01"
+
+    - name: Copy story.txt to App Server 2
+      copy:
+        src: /usr/src/data/story.txt
+        dest: /opt/data/story.txt
+        owner: steve
+        group: steve
+        mode: '0655'
+      when: ansible_nodename == "stapp02"
+
+    - name: Copy media.txt to App Server 3
+      copy:
+        src: /usr/src/data/media.txt
+        dest: /opt/data/media.txt
+        owner: banner
+        group: banner
+        mode: '0655'
+      when: ansible_nodename == "stapp03"
